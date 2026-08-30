@@ -1,0 +1,32 @@
+BACKGROUND MUSIC SOURCES
+
+NORMAL MENU / PUZZLE MUSIC
+Title: Calm Loop
+Author: wipics
+Source: https://opengameart.org/content/calm-loop
+License: CC0 / Public Domain
+File used remotely:
+https://opengameart.org/sites/default/files/Relaxing.mp3
+
+NORMAL MAZE MUSIC
+Title: Overworld (BGM)
+Author: IntelligentGene / Another Page Studio
+Source: https://opengameart.org/content/overworld-bgm
+License: CC0
+The source describes it as a calm, minimal looping background track.
+File used remotely:
+https://opengameart.org/sites/default/files/overworld.mp3
+
+BOSS MUSIC
+Title: Zelda Style 8-bit Boss Theme
+Author: HydroGene
+Source: https://opengameart.org/content/zelda-style-8-bit-boss-theme
+License: CC0
+File used remotely:
+https://opengameart.org/sites/default/files/8bit_jrpg_boss_battle.mp3
+
+IMPORTANT
+The game does not use Spider-Man or Marvel music.
+Normal play intentionally uses calmer background music. The intense track is reserved for boss rounds.
+Because the audio is streamed from OpenGameArt, internet access is needed for background music.
+Browser autoplay rules require one player tap/click before audio can begin.
