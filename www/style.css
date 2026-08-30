@@ -1132,3 +1132,52 @@ body.reveal-active #revealButton{
 #puzzleStudy::before{
   content:"MEMORIZE — NO MOVING"!important;
 }
+/* ===== DOWNLOAD ANDROID APP ===== */
+
+.download-app-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+  min-height:50px;
+
+  margin-top:8px;
+
+  border-radius:14px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #2ea44f,
+      #1f7a39
+    );
+
+  color:#fff;
+
+  font-size:14px;
+  font-weight:900;
+
+  text-decoration:none;
+
+  box-shadow:
+    0 5px 0 #145526,
+    0 10px 20px rgba(0,0,0,.28);
+
+  transition:
+    transform .18s ease,
+    filter .18s ease,
+    box-shadow .18s ease;
+}
+
+.download-app-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+}
+
+.download-app-btn:active{
+  transform:translateY(2px);
+
+  box-shadow:
+    0 2px 0 #145526;
+}
