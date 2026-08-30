@@ -1181,3 +1181,60 @@ body.reveal-active #revealButton{
   box-shadow:
     0 2px 0 #145526;
 }
+/* ===== PHONE SAFE AREA FIX ===== */
+
+:root{
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+body{
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+}
+
+.screen{
+  padding-top: calc(var(--safe-top) + 8px);
+  padding-bottom: calc(var(--safe-bottom) + 8px);
+}
+
+.screen > header{
+  padding-top: calc(var(--safe-top) + 10px);
+  min-height: 64px;
+}
+
+.home-v11{
+  padding-top: calc(var(--safe-top) + 12px);
+}
+
+.home-v11-topbar{
+  top: calc(var(--safe-top) + 12px);
+}
+
+.game-screen{
+  padding-top: calc(var(--safe-top) + 12px);
+}
+
+.game-stats{
+  margin-top: calc(var(--safe-top) + 6px);
+}
+
+/* Phones with taller camera/notch areas */
+@media (max-width: 600px){
+
+  .screen > header{
+    padding-top: max(18px, calc(var(--safe-top) + 12px));
+  }
+
+  .game-screen{
+    padding-top: max(18px, calc(var(--safe-top) + 12px));
+  }
+
+  .game-stats{
+    margin-top: 8px;
+  }
+
+  .home-v11-topbar{
+    top: max(18px, calc(var(--safe-top) + 10px));
+  }
+}
