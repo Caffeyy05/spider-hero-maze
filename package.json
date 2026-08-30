@@ -1,10 +1,10 @@
 {
-  "name": "spider-hero-complete-v31-memorize-duplicate-fix",
+  "name": "spider-hero-puzzle-quest",
   "version": "1.0.0",
-  "description": "",
+  "description": "Spider Hero Puzzle Quest",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "serve -s . -l $PORT"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@capacitor/android": "^8.5.0",
     "@capacitor/cli": "^8.5.0",
-    "@capacitor/core": "^8.5.0"
+    "@capacitor/core": "^8.5.0",
+    "serve": "^14.2.4"
   }
 }
