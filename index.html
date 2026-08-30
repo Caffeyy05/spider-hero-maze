@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>Spider Hero: Puzzle Quest</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="bgLayer" class="bg-layer theme-blue"></div>
+
+<div class="app">
+
+<section id="homeScreen" class="screen active home-v11">
+  <div class="home-v11-overlay"></div>
+
+  <div class="home-v11-topbar">
+
+    <div class="hud-pill">
+      <img src="assets/coin.svg" alt="">
+      <div>
+        <small>COINS</small>
+        <b id="homeCoins">0</b>
+      </div>
+    </div>
+
+    <div class="hud-pill">
+      <img src="assets/star-full.svg" alt="">
+      <div>
+        <small>STARS</small>
+        <b id="homeStars">0</b>
+      </div>
+    </div>
+
+    <div class="hud-pill lives-pill">
+      <div id="homeLives" class="icon-stat"></div>
+      <div>
+        <small>LIVES</small>
+        <b id="lifeTimer">FULL</b>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="home-v11-title">
+    <div class="hero-mark">SPIDER</div>
+    <h1>HERO</h1>
+    <span>PUZZLE QUEST</span>
+  </div>
+
+  <div class="home-v11-actions">
+
+    <div class="home-v11-center-menu">
+
+      <button id="playButton" class="v11-main-btn v11-play">
+        <span class="play-triangle" aria-hidden="true"></span>
+        <span>PLAY</span>
+      </button>
+
+      <button class="v11-main-btn" data-screen="levelsScreen">
+        <img src="assets/menu-levels.svg" alt="">
+        <span>LEVELS</span>
+      </button>
+
+      <button class="v11-main-btn" data-screen="howScreen">
+        <img src="assets/menu-help.svg" alt="">
+        <span>HOW TO PLAY</span>
+      </button>
+
+      <a
+        href="https://github.com/Caffeyy05/spider-hero-maze/releases/download/v1.0.0/app-release.apk"
+        class="download-app-btn"
+      >
+        DOWNLOAD ANDROID APP
+      </a>
+
+    </div>
+
+    <div class="home-v11-side-menu" aria-label="Quick menu">
+
+      <button class="v11-icon-btn" data-screen="shopScreen" aria-label="Shop" title="Shop">
+        <img src="assets/menu-shop.svg" alt="">
+      </button>
+
+      <button class="v11-icon-btn" id="skinsShortcut" aria-label="Skins" title="Skins">
+        <img src="assets/menu-shirt.svg" alt="">
+      </button>
+
+      <button class="v11-icon-btn" data-screen="settingsScreen" aria-label="Settings" title="Settings">
+        <img src="assets/menu-gear.svg" alt="">
+      </button>
+
+      <button class="v11-icon-btn" data-screen="achievementsScreen" aria-label="Achievements" title="Achievements">
+        <img src="assets/menu-trophy.svg" alt="">
+      </button>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section id="modeScreen" class="screen">
+
+<header>
+  <button class="back-btn" data-screen="homeScreen">BACK</button>
+  <h2>CHOOSE GAME</h2>
+  <span></span>
+</header>
+
+<div class="mode-grid">
+
+  <button class="mode-card" data-mode="maze">
+    <div class="mode-art maze-art"></div>
+    <h3>MAZE MISSION</h3>
+    <p>Choose routes, complete missions, and beat precision rounds.</p>
+  </button>
+
+  <button class="mode-card" data-mode="puzzle">
+    <div class="mode-art puzzle-art"></div>
+    <h3>WEB PUZZLE</h3>
+    <p>Memorize a dot sequence, then reconnect it from memory.</p>
+  </button>
+
+  <button class="mode-card" data-mode="flyer">
+    <div class="mode-art flyer-art"></div>
+    <h3>WEB FLYER</h3>
+    <p>Tap to glide through city gates and chase a high score.</p>
+  </button>
+
+</div>
+</section>
+
+
+<section id="difficultyScreen" class="screen">
+
+<header>
+  <button class="back-btn" data-screen="modeScreen">BACK</button>
+  <h2>DIFFICULTY</h2>
+  <span></span>
+</header>
+
+<div class="panel">
+
+<p class="muted center">
+Difficulty changes move buffers, hazards, reveals, and rewards.
+</p>
+
+<div class="difficulty-grid">
+
+<button class="difficulty-card" data-difficulty="easy">
+  <b>EASY</b>
+  <span>More moves, fewer hazards, 5 reveals.</span>
+  <small>1.0× coins</small>
+</button>
+
+<button class="difficulty-card" data-difficulty="normal">
+  <b>NORMAL</b>
+  <span>Balanced challenge, 3 reveals.</span>
+  <small>1.2× coins</small>
+</button>
+
+<button class="difficulty-card" data-difficulty="hard">
+  <b>HARD</b>
+  <span>Tighter limits, 2 reveals.</span>
+  <small>1.5× coins</small>
+</button>
+
+<button class="difficulty-card" data-difficulty="veryhard">
+  <b>VERY HARD</b>
+  <span>Precision-heavy, 1 reveal.</span>
+  <small>2.0× coins</small>
+</button>
+
+</div>
+
+<button id="startLevelButton" class="wide-btn accent">
+START
+</button>
+
+</div>
+
+</section>
+
+
+<section id="levelsScreen" class="screen">
+
+<header>
+  <button class="back-btn" data-screen="homeScreen">BACK</button>
+  <h2>LEVELS</h2>
+  <span></span>
+</header>
+
+<div class="panel flex-panel">
+
+<div class="tabs">
+  <button class="tab active" data-level-mode="maze">MAZE</button>
+  <button class="tab" data-level-mode="puzzle">PUZZLE</button>
+</div>
+
+<div class="notice">
+Every 10th level is a Boss Round. Some Maze levels become Precision Rounds.
+</div>
+
+<div id="levelGrid" class="level-grid"></div>
+
+</div>
+</section>
+
+
+<section id="shopScreen" class="screen">
+
+<header>
+  <button class="back-btn" data-screen="homeScreen">BACK</button>
+  <h2>SHOP</h2>
+
+  <div class="metric">
+    <img src="assets/coin.svg">
+    <b id="shopCoins">0</b>
+  </div>
+</header>
+
+<div class="panel flex-panel shop-panel">
+
+<div class="tabs shop-main-tabs">
+  <button class="tab active" data-shop-main="skins">SKINS</button>
+  <button class="tab" data-shop-main="cities">CITIES</button>
+  <button class="tab" data-shop-main="music">MUSIC</button>
+  <button class="tab" data-shop-main="tiles">TILES</button>
+</div>
+
+<div id="rarityTabs" class="rarity-tabs">
+
+<button class="rarity-tab active" data-rarity="basic">
+BASIC
+</button>
+
+<button class="rarity-tab" data-rarity="rare">
+RARE
+</button>
+
+<button class="rarity-tab" data-rarity="epic">
+EPIC
+</button>
+
+<button class="rarity-tab" data-rarity="legendary">
+LEGENDARY
+</button>
+
+<button class="rarity-tab" data-rarity="premium">
+PREMIUM
+</button>
+
+</div>
+
+<div id="shopList" class="shop-list"></div>
+
+</div>
+
+</section>
+
+
+<section id="achievementsScreen" class="screen">
+
+<header>
+  <button class="back-btn" data-screen="homeScreen">BACK</button>
+  <h2>ACHIEVEMENTS</h2>
+  <span></span>
+</header>
+
+<div id="achievementList" class="panel flex-panel"></div>
+
+</section>
+
+
+<section id="howScreen" class="screen">
+
+<header>
+  <button class="back-btn" data-screen="homeScreen">BACK</button>
+  <h2>HOW TO PLAY</h2>
+  <span></span>
+</header>
+
+<div class="panel rules flex-panel">
+
+<article>
+<h3>MAZE MISSION</h3>
+<p>
+Choose between multiple routes. Complete all keys, orbs and switches before the exit opens.
+Some Precision Rounds give almost exactly enough moves.
+</p>
+</article>
+
+<article>
+<h3>WEB PUZZLE</h3>
+<p>
+Watch the dots pulse in order for 6 seconds.
+Movement is locked during memorization.
+Then reconnect the same dot sequence from memory.
+</p>
+</article>
+
+<article>
+<h3>PHONE DRAG</h3>
+<p>
+Tap adjacent tiles or hold your finger down and slide across tiles continuously to draw your web path.
+</p>
+</article>
+
+<article>
+<h3>MISTAKES</h3>
+<p>
+A wrong puzzle dot costs half a heart.
+Running out of moves or failing the round costs one full heart.
+</p>
+</article>
+
+<article>
+<h3>BOSS ROUNDS</h3>
+<p>
+Every 10th level combines more mechanics and gives better rewards.
+</p>
+</article>
+
+</div>
+
+</section>
+
+
+<section id="settingsScreen" class="screen">
+
+<header>
+  <button class="back-btn" data-screen="homeScreen">BACK</button>
+  <h2>SETTINGS</h2>
+  <span></span>
+</header>
+
+<div class="panel flex-panel">
+
+<div class="setting">
+<div>
+<b>MUSIC</b>
+<small>Background music</small>
+</div>
+<button id="musicToggle">ON</button>
+</div>
+
+<div class="setting">
+<div>
+<b>MUSIC VOLUME</b>
+<small>Background music level</small>
+</div>
+
+<input
+id="musicVolume"
+class="slider"
+type="range"
+min="0"
+max="100"
+step="5"
+>
+</div>
+
+<div class="setting">
+<div>
+<b>SOUND EFFECTS</b>
+<small>Movement and warning sounds</small>
+</div>
+
+<button id="soundToggle">ON</button>
+</div>
+
+<div class="setting">
+<div>
+<b>SFX VOLUME</b>
+<small>Sound effect level</small>
+</div>
+
+<input
+id="sfxVolume"
+class="slider"
+type="range"
+min="0"
+max="100"
+step="5"
+>
+</div>
+
+<div class="setting">
+<div>
+<b>VIBRATION</b>
+<small>Phone feedback</small>
+</div>
+
+<button id="vibrationToggle">ON</button>
+</div>
+
+<div class="setting">
+
+<div>
+<b>MAZE CONTROLS</b>
+<small>Touch control style</small>
+</div>
+
+<select id="controlsSelect">
+<option value="both">Buttons + Swipe</option>
+<option value="buttons">Buttons Only</option>
+<option value="swipe">Swipe Only</option>
+</select>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+<b>BACKGROUND MODE</b>
+<small>Match skin automatically or use your selected background</small>
+</div>
+
+<select id="backgroundModeSelect">
+<option value="auto">Auto Match Skin</option>
+<option value="manual">Manual</option>
+</select>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+<b>DEFAULT DIFFICULTY</b>
+<small>Used for both games</small>
+</div>
+
+<select id="difficultySelect">
+<option value="easy">Easy</option>
+<option value="normal">Normal</option>
+<option value="hard">Hard</option>
+<option value="veryhard">Very Hard</option>
+</select>
+
+</div>
+
+
+<div class="setting danger">
+
+<div>
+<b>RESET PROGRESS</b>
+<small>Deletes levels, rewards and unlocks</small>
+</div>
+
+<button id="resetProgressButton">
+RESET
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="mazeGameScreen" class="screen game-screen">
+
+<div id="mazeBossBanner" class="boss-banner">
+BOSS ROUND
+</div>
+
+<div id="precisionBanner" class="precision-banner">
+PRECISION ROUND
+</div>
+
+<div class="game-stats">
+
+<div>
+<small>LEVEL</small>
+<b id="mazeLevelText">1</b>
+</div>
+
+<div>
+<small>MOVES</small>
+<b id="mazeMovesText">0 / 0</b>
+</div>
+
+<div>
+<small>LIVES</small>
+<div id="mazeLives" class="icon-stat compact"></div>
+</div>
+
+</div>
+
+
+<div class="mission-box">
+
+<small>MAZE MISSION</small>
+
+<b id="mazeObjectiveText"></b>
+
+<span id="mazeMissionProgress"></span>
+
+</div>
+
+
+<div class="maze-shell">
+
+<div class="maze-art-layer"></div>
+
+<canvas id="mazeCanvas"></canvas>
+
+</div>
+
+
+<div id="mazeMessage" class="message">
+Choose your route.
+</div>
+
+
+<div id="controlsWrapper" class="controls">
+
+<button class="control up" data-direction="up">
+▲
+</button>
+
+<button class="control left" data-direction="left">
+◀
+</button>
+
+<button class="control down" data-direction="down">
+▼
+</button>
+
+<button class="control right" data-direction="right">
+▶
+</button>
+
+</div>
+
+
+<div class="bottom-actions three">
+
+<button id="mazeRestartButton">
+RESTART
+</button>
+
+<button id="mazeGearButton" class="gear-btn">
+⚙
+</button>
+
+<button id="mazeHomeButton">
+HOME
+</button>
+
+</div>
+
+</section>
+
+
+<section id="puzzleGameScreen" class="screen game-screen">
+
+<div id="puzzleBossBanner" class="boss-banner">
+BOSS ROUND
+</div>
+
+
+<div class="game-stats">
+
+<div>
+<small>LEVEL</small>
+<b id="puzzleLevelText">1</b>
+</div>
+
+<div>
+<small>MOVES</small>
+<b id="puzzleMovesText">0 / 0</b>
+</div>
+
+<div>
+<small>LIVES</small>
+<div id="puzzleLives" class="icon-stat compact"></div>
+</div>
+
+</div>
+
+
+<div class="mission-box">
+
+<small>WEB PUZZLE</small>
+
+<b id="puzzleObjectiveText">
+Reconnect the hidden dot sequence.
+</b>
+
+<span id="puzzleProgress"></span>
+
+</div>
+
+
+<div id="puzzleStudy" class="study-bar">
+
+<b id="studyCountdown">
+6
+</b>
+
+</div>
+
+
+<div id="puzzleBoard" class="puzzle-board"></div>
+
+
+<div class="puzzle-tools">
+
+<button id="revealButton">
+REVEAL
+<span id="revealCount"></span>
+</button>
+
+</div>
+
+
+<div id="puzzleMessage" class="message">
+Memorize the pulse order.
+</div>
+
+
+<div class="bottom-actions three">
+
+<button id="puzzleRestartButton">
+RESTART
+</button>
+
+<button id="puzzleGearButton" class="gear-btn">
+⚙
+</button>
+
+<button id="puzzleHomeButton">
+HOME
+</button>
+
+</div>
+
+</section>
+
+
+<section id="flyerGameScreen" class="screen game-screen flyer-screen">
+
+<div class="game-stats">
+
+<div>
+<small>LEVEL</small>
+<b id="flyerLevelText">1</b>
+</div>
+
+<div>
+<small>SCORE</small>
+<b id="flyerScoreText">0</b>
+</div>
+
+<div>
+<small>BEST</small>
+<b id="flyerBestText">0</b>
+</div>
+
+</div>
+
+
+<div class="mission-box">
+
+<small>WEB FLYER</small>
+
+<b>
+Glide through the web gates.
+</b>
+
+<span>
+Keep flying as long as you can.
+Beat your best score without crashing.
+</span>
+
+</div>
+
+
+<div class="flyer-wrap">
+
+<canvas
+id="flyerCanvas"
+width="360"
+height="500">
+</canvas>
+
+
+<div
+id="flyerStartOverlay"
+class="flyer-start-overlay">
+
+<div class="flyer-start-card">
+
+<div class="flyer-start-icon">
+🕷️
+</div>
+
+<b>
+TAP TO START
+</b>
+
+<small>
+Keep tapping to stay in the air
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="flyerMessage"
+class="message">
+
+Pass through gates to score.
+
+</div>
+
+
+<div class="bottom-actions two">
+
+<button id="flyerRestartButton">
+RESTART
+</button>
+
+<button id="flyerHomeButton">
+HOME
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+<div id="resultOverlay" class="overlay">
+
+<div class="modal">
+
+<div id="resultTag" class="result-tag">
+SUCCESS
+</div>
+
+<h2 id="resultTitle">
+LEVEL COMPLETE
+</h2>
+
+<div id="resultStars" class="result-stars"></div>
+
+<p id="resultText"></p>
+
+<div id="rewardText" class="reward"></div>
+
+<button
+id="resultMainButton"
+class="wide-btn accent">
+NEXT LEVEL
+</button>
+
+<button
+id="resultHomeButton"
+class="wide-btn dark">
+HOME
+</button>
+
+</div>
+
+</div>
+
+
+<div id="noLivesOverlay" class="overlay">
+
+<div class="modal">
+
+<div class="result-tag">
+LOCKED
+</div>
+
+<h2>
+OUT OF LIVES
+</h2>
+
+<p>
+Movement is locked.
+Wait for a heart to recover before continuing.
+</p>
+
+<div class="recharge large">
+
+<span>
+Next heart
+</span>
+
+<strong id="noLivesTimer">
+00:30
+</strong>
+
+</div>
+
+<button
+id="closeNoLivesButton"
+class="wide-btn accent">
+OK
+</button>
+
+</div>
+
+</div>
+
+
+<div id="confirmOverlay" class="overlay">
+
+<div class="modal">
+
+<div class="result-tag">
+CONFIRM
+</div>
+
+<h2 id="confirmTitle">
+Are you sure?
+</h2>
+
+<p id="confirmText"></p>
+
+<button
+id="confirmYes"
+class="wide-btn accent">
+YES
+</button>
+
+<button
+id="confirmNo"
+class="wide-btn dark">
+NO, CONTINUE
+</button>
+
+</div>
+
+</div>
+
+
+<div id="gearOverlay" class="overlay">
+
+<div class="modal settings-modal">
+
+<div class="result-tag">
+QUICK SETTINGS
+</div>
+
+<h2>
+GAME SETTINGS
+</h2>
+
+
+<div class="quick-setting">
+
+<span>
+Music
+</span>
+
+<button id="gearMusicToggle">
+ON
+</button>
+
+</div>
+
+
+<div class="quick-setting">
+
+<span>
+Music volume
+</span>
+
+<input
+id="gearMusicVolume"
+class="slider"
+type="range"
+min="0"
+max="100"
+step="5"
+>
+
+</div>
+
+
+<div class="quick-setting">
+
+<span>
+SFX
+</span>
+
+<button id="gearSoundToggle">
+ON
+</button>
+
+</div>
+
+
+<div class="quick-setting">
+
+<span>
+SFX volume
+</span>
+
+<input
+id="gearSfxVolume"
+class="slider"
+type="range"
+min="0"
+max="100"
+step="5"
+>
+
+</div>
+
+
+<div class="quick-setting">
+
+<span>
+Music track
+</span>
+
+<select id="gearMusicChoice">
+</select>
+
+</div>
+
+
+<div class="quick-setting">
+
+<span>
+Background
+</span>
+
+<select id="gearBackgroundChoice">
+</select>
+
+</div>
+
+
+<div class="quick-setting">
+
+<span>
+Tile Skin
+</span>
+
+<select id="gearTileChoice">
+</select>
+
+</div>
+
+
+<button
+id="gearClose"
+class="wide-btn accent">
+RETURN TO GAME
+</button>
+
+</div>
+
+</div>
+
+
+<div id="gameToast" class="game-toast">
+
+<img
+id="toastIcon"
+src="assets/menu-shop.svg"
+alt=""
+>
+
+<div>
+
+<b id="toastTitle">
+NOTICE
+</b>
+
+<span id="toastText"></span>
+
+</div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
