@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Spider Hero Puzzle Quest</string>
+    <string name="title_activity_main">Spider Hero Puzzle Quest</string>
+    <string name="package_name">com.caffeyy05.spiderhero</string>
+    <string name="custom_url_scheme">com.caffeyy05.spiderhero</string>
+</resources>

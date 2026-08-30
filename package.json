@@ -1,0 +1,26 @@
+{
+  "name": "spider-hero-complete-v31-memorize-duplicate-fix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caffeyy05/spider-hero-maze.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Caffeyy05/spider-hero-maze/issues"
+  },
+  "homepage": "https://github.com/Caffeyy05/spider-hero-maze#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/cli": "^8.5.0",
+    "@capacitor/core": "^8.5.0"
+  }
+}
